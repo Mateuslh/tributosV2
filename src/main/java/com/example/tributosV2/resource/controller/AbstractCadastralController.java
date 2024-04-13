@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -16,6 +17,12 @@ public abstract class AbstractCadastralController<E, R extends JpaRepository<E, 
     protected R repository;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
+
+    @GetMapping
+    public ResponseEntity<?> getAll(){
+        return ResponseEntity.ok().body(repository.findAll());
+    }
+
 
     @PostMapping
     public ResponseEntity<?> create(@RequestBody JsonNode requestBody) {
