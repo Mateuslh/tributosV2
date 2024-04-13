@@ -39,7 +39,7 @@ public abstract class AbstractCadastralController<E, R extends JpaRepository<E, 
                 return ResponseEntity.ok().body(repository.save(entity));
             }
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body("Erro ao converter o corpo da solicitação.");
+            return ResponseEntity.badRequest().body("Erro ao executar operação:"+ e.getMessage());
         }
     }
 
