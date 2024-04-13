@@ -2,7 +2,10 @@ package com.example.tributosV2.model.Contribuinte;
 
 import com.example.tributosV2.model.EntityId.EntityId;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
 
