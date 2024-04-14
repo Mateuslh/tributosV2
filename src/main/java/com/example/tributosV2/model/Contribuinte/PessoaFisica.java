@@ -21,11 +21,11 @@ public class PessoaFisica extends Contribuinte {
     private String rg;
 
     public void setCpf(String cpf) {
-        String cpfSemFormatacao = cpf.replaceAll(".","");
+        String cpfSemFormatacao = cpf.replace(".","");
         if (!ValidadorDocumento.validarCPF(cpfSemFormatacao)){
             throw new ValidationException("Cpf não é valido para inserção!");
         };
-        this.rg = cpfSemFormatacao;
+        this.cpf = cpfSemFormatacao;
     }
 
     @Override
