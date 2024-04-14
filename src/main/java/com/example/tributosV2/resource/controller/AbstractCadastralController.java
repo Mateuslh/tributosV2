@@ -1,5 +1,6 @@
 package com.example.tributosV2.resource.controller;
 
+import com.example.tributosV2.service.AbstractCadastralService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,15 +14,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public abstract class AbstractCadastralController<E, R extends JpaRepository<E, Long>> {
+public abstract class AbstractCadastralController<E, R extends AbstractCadastralService<E>> {
     @Autowired
-    protected R repository;
+    protected R service;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @GetMapping
     public ResponseEntity<?> getAll(){
-        return ResponseEntity.ok().body(repository.findAll());
+        return ResponseEntity.ok().body(service.getAll());
     }
 
 
@@ -34,10 +35,10 @@ public abstract class AbstractCadastralController<E, R extends JpaRepository<E, 
                     E entity = objectMapper.convertValue(node, this.getEntityClass());
                     entities.add(entity);
                 }
-                return ResponseEntity.ok().body(repository.saveAll(entities));
+                return ResponseEntity.ok().body(service.saveAll(entities));
             } else {
                 E entity = objectMapper.convertValue(requestBody, this.getEntityClass());
-                return ResponseEntity.ok().body(repository.save(entity));
+                return ResponseEntity.ok().body(service.save(entity));
             }
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body("Erro ao executar operação:"+ e.getMessage());
