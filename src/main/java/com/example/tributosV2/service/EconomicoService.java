@@ -25,33 +25,35 @@ public class EconomicoService extends AbstractCadastralService<Economico> {
     }
 
     public Economico save(Economico economico) {
-       return repository.save(economico);
-   }
-   public List<Economico> getAll() {
-       return repository.findAll();
-   }
-   public Economico getById(Long id){
-       return repository.getReferenceById(id);
-   }
+        return repository.save(economico);
+    }
 
-   public Economico update(Long id,Economico entity){
-       Optional<Economico> existingEconomicoOptional = repository.findById(id);
-       if (existingEconomicoOptional.isEmpty()){
-           throw new NotFoundException("Economico não encontrado!");
-       }
-       Economico existingEconomico = existingEconomicoOptional.get();
+    public List<Economico> getAll() {
+        return repository.findAll();
+    }
 
-       modelMapper.map(entity, existingEconomico);
+    public Economico getById(Long id) {
+        return repository.getReferenceById(id);
+    }
 
-       return repository.save(existingEconomico);
+    public Economico update(Long id, Economico entity) {
+        Optional<Economico> existingEconomicoOptional = repository.findById(id);
+        if (existingEconomicoOptional.isEmpty()) {
+            throw new NotFoundException("Economico não encontrado!");
+        }
+        Economico existingEconomico = existingEconomicoOptional.get();
 
-   }
+        modelMapper.map(entity, existingEconomico);
 
-   public void delete(Long id) {
-       Optional<Economico> existingEconomicoOptional = repository.findById(id);
-       if (existingEconomicoOptional.isEmpty()){
-           throw new NotFoundException("Economico não encontrado!");
-       }
-       repository.deleteById(id);
-   }
+        return repository.save(existingEconomico);
+
+    }
+
+    public void delete(Long id) {
+        Optional<Economico> existingEconomicoOptional = repository.findById(id);
+        if (existingEconomicoOptional.isEmpty()) {
+            throw new NotFoundException("Economico não encontrado!");
+        }
+        repository.deleteById(id);
+    }
 }

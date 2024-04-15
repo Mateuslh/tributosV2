@@ -2,32 +2,36 @@ package com.example.tributosV2.model.Contribuinte;
 
 import com.example.tributosV2.model.EntityId.EntityId;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@MappedSuperclass
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@AllArgsConstructor
+@NoArgsConstructor
 public abstract class Contribuinte extends EntityId {
 
-    @Column(name="codigo",nullable = false,unique = true)
+    @Column(name = "codigo", nullable = false, unique = true)
     private Long codigo;
 
-    @Column(name="nome",nullable = false)
+    @Column(name = "nome", nullable = false)
     private String nome;
+
     @Enumerated(EnumType.STRING)
-    @Column(name="situacao",nullable = false)
+    @Column(name = "situacao", nullable = false)
     private ContribuinteSituacao situacao = ContribuinteSituacao.ATIVO;
 
-    @Column(name = "endereco", nullable = true)
+    @Column(name = "endereco")
     private String endereco;
 
-    @Column(name = "email", nullable = true)
+    @Column(name = "email")
     private String email;
+
     @JsonIgnore
     public abstract String getDocumentoPrincipal();
 }
