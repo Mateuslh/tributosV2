@@ -1,9 +1,7 @@
 package com.example.tributosV2.service;
 
 import com.example.tributosV2.exception.NotFoundException;
-import com.example.tributosV2.model.Contribuinte.PessoaFisica;
 import com.example.tributosV2.model.Contribuinte.PessoaJuridica;
-import com.example.tributosV2.repository.PessoaFisicaRepository;
 import com.example.tributosV2.repository.PessoaJuridicaRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
