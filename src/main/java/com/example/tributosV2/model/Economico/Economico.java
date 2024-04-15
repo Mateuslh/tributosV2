@@ -35,7 +35,7 @@ public class Economico extends EntityId {
     @Column(name = "endereco")
     private String endereco;
 
-    @Column(name = "nome")
+    @Column(name = "nome", nullable = false)
     private String nome;
 
     @Column(name = "dhInicioAtividade")

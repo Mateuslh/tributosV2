@@ -25,33 +25,35 @@ public class PessoaJuridicaService extends AbstractCadastralService<PessoaJuridi
     }
 
     public PessoaJuridica save(PessoaJuridica pessoaJuridica) {
-       return repository.save(pessoaJuridica);
-   }
-   public List<PessoaJuridica> getAll() {
-       return repository.findAll();
-   }
-   public PessoaJuridica getById(Long id){
-       return repository.getReferenceById(id);
-   }
+        return repository.save(pessoaJuridica);
+    }
 
-   public PessoaJuridica update(Long id,PessoaJuridica entity){
-       Optional<PessoaJuridica> existingPessoaJuridicaOptional = repository.findById(id);
-       if (existingPessoaJuridicaOptional.isEmpty()){
-           throw new NotFoundException("Pessoa Juridica não encontrada!");
-       }
-       PessoaJuridica existingPessoaFisica = existingPessoaJuridicaOptional.get();
+    public List<PessoaJuridica> getAll() {
+        return repository.findAll();
+    }
 
-       modelMapper.map(entity, existingPessoaFisica);
+    public PessoaJuridica getById(Long id) {
+        return repository.getReferenceById(id);
+    }
 
-       return repository.save(existingPessoaFisica);
+    public PessoaJuridica update(Long id, PessoaJuridica entity) {
+        Optional<PessoaJuridica> existingPessoaJuridicaOptional = repository.findById(id);
+        if (existingPessoaJuridicaOptional.isEmpty()) {
+            throw new NotFoundException("Pessoa Juridica não encontrada!");
+        }
+        PessoaJuridica existingPessoaFisica = existingPessoaJuridicaOptional.get();
 
-   }
+        modelMapper.map(entity, existingPessoaFisica);
 
-   public void delete(Long id) {
-       Optional<PessoaJuridica> existingPessoaJuridicaOptional = repository.findById(id);
-       if (existingPessoaJuridicaOptional.isEmpty()){
-           throw new NotFoundException("Pessoa Juridica não encontrada!");
-       }
-       repository.deleteById(id);
-   }
+        return repository.save(existingPessoaFisica);
+
+    }
+
+    public void delete(Long id) {
+        Optional<PessoaJuridica> existingPessoaJuridicaOptional = repository.findById(id);
+        if (existingPessoaJuridicaOptional.isEmpty()) {
+            throw new NotFoundException("Pessoa Juridica não encontrada!");
+        }
+        repository.deleteById(id);
+    }
 }

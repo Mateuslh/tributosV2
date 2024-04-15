@@ -2,7 +2,6 @@ package com.example.tributosV2.model.imovel;
 
 import com.example.tributosV2.model.EntityId.EntityId;
 import jakarta.persistence.*;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +16,7 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Imovel extends EntityId {
-    @Column(nullable = false,unique = true)
+    @Column(nullable = false, unique = true)
     public Long codigo;
 
     @Column(nullable = false)
@@ -30,7 +29,7 @@ public class Imovel extends EntityId {
     @Embedded
     public InscricaoImobiliaria inscricaoImobiliaria;
 
-    public void setInscricaoImobiliaria(@org.jetbrains.annotations.NotNull Map<String,Long> inscricaoImobiliaria) {
+    public void setInscricaoImobiliaria(@org.jetbrains.annotations.NotNull Map<String, Long> inscricaoImobiliaria) {
         this.inscricaoImobiliaria = new InscricaoImobiliaria();
         this.inscricaoImobiliaria.setCampo1(inscricaoImobiliaria.get("campo1"));
         this.inscricaoImobiliaria.setCampo2(inscricaoImobiliaria.get("campo2"));

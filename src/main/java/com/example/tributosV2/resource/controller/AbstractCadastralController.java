@@ -13,13 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractCadastralController<E, R extends AbstractCadastralService<E>> {
+    private final ObjectMapper objectMapper = new ObjectMapper();
     @Autowired
     protected R service;
 
-    private final ObjectMapper objectMapper = new ObjectMapper();
-
     @GetMapping
-    public ResponseEntity<?> getAll(){
+    public ResponseEntity<?> getAll() {
         return ResponseEntity.ok().body(service.getAll());
     }
 
@@ -29,7 +28,7 @@ public abstract class AbstractCadastralController<E, R extends AbstractCadastral
         try {
             List<E> entities = new ArrayList<>();
             if (requestBody.isArray()) {
-                for (JsonNode node : requestBody){
+                for (JsonNode node : requestBody) {
                     E entity = objectMapper.convertValue(node, this.getEntityClass());
                     entities.add(entity);
                 }
@@ -39,7 +38,7 @@ public abstract class AbstractCadastralController<E, R extends AbstractCadastral
                 return ResponseEntity.ok().body(service.save(entity));
             }
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body("Erro ao executar operação:"+ e.getMessage());
+            return ResponseEntity.badRequest().body("Erro ao executar operação:" + e.getMessage());
         }
     }
 

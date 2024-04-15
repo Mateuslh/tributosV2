@@ -25,33 +25,35 @@ public class PessoaFisicaService extends AbstractCadastralService<PessoaFisica> 
     }
 
     public PessoaFisica save(PessoaFisica pessoaFisica) {
-       return repository.save(pessoaFisica);
-   }
-   public List<PessoaFisica> getAll() {
-       return repository.findAll();
-   }
-   public PessoaFisica getById(Long id){
-       return repository.getReferenceById(id);
-   }
+        return repository.save(pessoaFisica);
+    }
 
-   public PessoaFisica update(Long id,PessoaFisica entity){
-       Optional<PessoaFisica> existingPessoaFisicaOptional = repository.findById(id);
-       if (existingPessoaFisicaOptional.isEmpty()){
-           throw new NotFoundException("Pessoa Física não encontrada!");
-       }
-       PessoaFisica existingPessoaFisica = existingPessoaFisicaOptional.get();
+    public List<PessoaFisica> getAll() {
+        return repository.findAll();
+    }
 
-       modelMapper.map(entity, existingPessoaFisica);
+    public PessoaFisica getById(Long id) {
+        return repository.getReferenceById(id);
+    }
 
-       return repository.save(existingPessoaFisica);
+    public PessoaFisica update(Long id, PessoaFisica entity) {
+        Optional<PessoaFisica> existingPessoaFisicaOptional = repository.findById(id);
+        if (existingPessoaFisicaOptional.isEmpty()) {
+            throw new NotFoundException("Pessoa Física não encontrada!");
+        }
+        PessoaFisica existingPessoaFisica = existingPessoaFisicaOptional.get();
 
-   }
+        modelMapper.map(entity, existingPessoaFisica);
 
-   public void delete(Long id) {
-       Optional<PessoaFisica> existingPessoaFisicaOptional = repository.findById(id);
-       if (existingPessoaFisicaOptional.isEmpty()){
-           throw new NotFoundException("Pessoa Física não encontrada!");
-       }
-       repository.deleteById(id);
-   }
+        return repository.save(existingPessoaFisica);
+
+    }
+
+    public void delete(Long id) {
+        Optional<PessoaFisica> existingPessoaFisicaOptional = repository.findById(id);
+        if (existingPessoaFisicaOptional.isEmpty()) {
+            throw new NotFoundException("Pessoa Física não encontrada!");
+        }
+        repository.deleteById(id);
+    }
 }

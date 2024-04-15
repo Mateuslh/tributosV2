@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EconomicoRepository extends JpaRepository<Economico,Long> {
+public interface EconomicoRepository extends JpaRepository<Economico, Long> {
 
 }

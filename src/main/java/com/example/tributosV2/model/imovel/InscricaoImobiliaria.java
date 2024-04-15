@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,21 +28,22 @@ public class InscricaoImobiliaria {
     public Long campo4;
 
     public void setCampo1(Long campo1) {
-        if(campo1.toString().length() == 4 ) this.campo1 = campo1;
+        if (campo1.toString().length() == 4) this.campo1 = campo1;
         else throw new ValidationException("O campo 1 precisa ter exatos 4 caracteres!");
     }
 
     public void setCampo2(Long campo2) {
-        if(campo2.toString().length() == 9) this.campo2 = campo2;
+        if (campo2.toString().length() == 9) this.campo2 = campo2;
         else throw new ValidationException("O campo 2 precisa ter exatos 9 caracteres!");
     }
+
     public void setCampo3(Long campo3) {
-        if(campo3.toString().length() == 3 ) this.campo3 = campo3;
+        if (campo3.toString().length() == 3) this.campo3 = campo3;
         else throw new ValidationException("O campo 3 precisa ter exatos 3 caracteres!");
     }
 
     public void setCampo4(Long campo4) {
-        if(campo4.toString().length() == 1 ) this.campo4 = campo4;
+        if (campo4.toString().length() == 1) this.campo4 = campo4;
         else throw new ValidationException("O campo 4 precisa ter exatos 1 caracter!");
     }
 
