@@ -1,6 +1,7 @@
 package com.example.tributosV2.model.Contribuinte;
 
 import com.example.tributosV2.exception.ValidationException;
+import com.example.tributosV2.model.EntityId.EntityId;
 import com.example.tributosV2.util.ValidadorDocumento;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,7 +17,7 @@ import lombok.Setter;
 @Table(name = "PessoaJuridica")
 @AllArgsConstructor
 @NoArgsConstructor
-public class PessoaJuridica extends Contribuinte {
+public class PessoaJuridica extends EntityId {
     @Column(name = "cnpj", nullable = false)
     private String cnpj;
     @Column(name = "inscricao_estadual")
@@ -28,10 +29,5 @@ public class PessoaJuridica extends Contribuinte {
             throw new ValidationException("Cnpj não é valido para inserção!");
         }
         this.cnpj = cnpjSemFormatacao;
-    }
-
-    @Override
-    public String getDocumentoPrincipal() {
-        return this.getCnpj();
     }
 }

@@ -11,10 +11,18 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Table
 @AllArgsConstructor
 @NoArgsConstructor
-public abstract class Contribuinte extends EntityId {
+public class Contribuinte extends EntityId {
+
+    @OneToOne
+    @JoinColumn(name = "pessoaFisica_id")
+    private PessoaFisica pessoaFisica;
+
+    @OneToOne
+    @JoinColumn(name = "pessoaJuridica_id")
+    private PessoaJuridica pessoaJuridica;
 
     @Column(name = "codigo", nullable = false, unique = true)
     private Long codigo;
@@ -31,7 +39,4 @@ public abstract class Contribuinte extends EntityId {
 
     @Column(name = "email")
     private String email;
-
-    @JsonIgnore
-    public abstract String getDocumentoPrincipal();
 }

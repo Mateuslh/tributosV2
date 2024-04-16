@@ -1,6 +1,7 @@
 package com.example.tributosV2.model.Contribuinte;
 
 import com.example.tributosV2.exception.ValidationException;
+import com.example.tributosV2.model.EntityId.EntityId;
 import com.example.tributosV2.util.ValidadorDocumento;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,7 +17,7 @@ import lombok.Setter;
 @Table(name = "PessoaFisica")
 @AllArgsConstructor
 @NoArgsConstructor
-public class PessoaFisica extends Contribuinte {
+public class PessoaFisica extends EntityId {
 
     @Column(name = "cpf", nullable = false, unique = true)
     private String cpf;
@@ -30,10 +31,5 @@ public class PessoaFisica extends Contribuinte {
             throw new ValidationException("Cpf não é valido para inserção!");
         }
         this.cpf = cpfSemFormatacao;
-    }
-
-    @Override
-    public String getDocumentoPrincipal() {
-        return this.getCpf();
     }
 }
