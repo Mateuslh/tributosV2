@@ -1,6 +1,7 @@
 package com.example.tributosV2.model.Economico;
 
 import com.example.tributosV2.exception.ValidationException;
+import com.example.tributosV2.model.Contribuinte.Contribuinte;
 import com.example.tributosV2.model.Contribuinte.PessoaFisica;
 import com.example.tributosV2.model.Contribuinte.PessoaJuridica;
 import com.example.tributosV2.model.EntityId.EntityId;
@@ -18,12 +19,8 @@ import java.sql.Timestamp;
 public class Economico extends EntityId {
 
     @ManyToOne
-    @JoinColumn(name = "pessoaFisica_id")
-    private PessoaFisica pessoaFisica;
-
-    @ManyToOne
-    @JoinColumn(name = "pessoaJuridica_id")
-    private PessoaJuridica pessoaJuridica;
+    @JoinColumn(name = "contribuinte_id")
+    private Contribuinte contribuinte;
 
     @Column(name = "codigo", nullable = false, unique = true)
     private Long codigo;

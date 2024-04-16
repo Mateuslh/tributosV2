@@ -1,5 +1,6 @@
 package com.example.tributosV2.model.imovel;
 
+import com.example.tributosV2.model.Contribuinte.Contribuinte;
 import com.example.tributosV2.model.EntityId.EntityId;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -18,6 +19,11 @@ import java.util.Map;
 public class Imovel extends EntityId {
     @Column(nullable = false, unique = true)
     public Long codigo;
+
+    @ManyToOne
+    @JoinColumn(name = "contribuinte_id")
+    private Contribuinte contribuinte;
+
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
