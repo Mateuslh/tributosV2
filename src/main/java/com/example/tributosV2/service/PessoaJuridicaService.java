@@ -24,8 +24,8 @@ public class PessoaJuridicaService extends AbstractCadastralService<PessoaJuridi
         return repository.saveAll(entitys);
     }
 
-    public PessoaJuridica save(PessoaJuridica pessoaJuridica) {
-        return repository.save(pessoaJuridica);
+    public PessoaJuridica save(PessoaJuridica entity) {
+        return repository.save(entity);
     }
 
     public List<PessoaJuridica> getAll() {
@@ -37,11 +37,11 @@ public class PessoaJuridicaService extends AbstractCadastralService<PessoaJuridi
     }
 
     public PessoaJuridica update(Long id, PessoaJuridica entity) {
-        Optional<PessoaJuridica> existingPessoaJuridicaOptional = repository.findById(id);
-        if (existingPessoaJuridicaOptional.isEmpty()) {
+        Optional<PessoaJuridica> existingEntityOptional = repository.findById(id);
+        if (existingEntityOptional.isEmpty()) {
             throw new NotFoundException("Pessoa Juridica não encontrada!");
         }
-        PessoaJuridica existingPessoaFisica = existingPessoaJuridicaOptional.get();
+        PessoaJuridica existingPessoaFisica = existingEntityOptional.get();
 
         modelMapper.map(entity, existingPessoaFisica);
 
@@ -50,8 +50,8 @@ public class PessoaJuridicaService extends AbstractCadastralService<PessoaJuridi
     }
 
     public void delete(Long id) {
-        Optional<PessoaJuridica> existingPessoaJuridicaOptional = repository.findById(id);
-        if (existingPessoaJuridicaOptional.isEmpty()) {
+        Optional<PessoaJuridica> existingEntityOptional = repository.findById(id);
+        if (existingEntityOptional.isEmpty()) {
             throw new NotFoundException("Pessoa Juridica não encontrada!");
         }
         repository.deleteById(id);

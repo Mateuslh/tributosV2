@@ -24,8 +24,8 @@ public class ImovelService extends AbstractCadastralService<Imovel> {
         return repository.saveAll(entitys);
     }
 
-    public Imovel save(Imovel Imovel) {
-        return repository.save(Imovel);
+    public Imovel save(Imovel entity) {
+        return repository.save(entity);
     }
 
     public List<Imovel> getAll() {
@@ -37,21 +37,21 @@ public class ImovelService extends AbstractCadastralService<Imovel> {
     }
 
     public Imovel update(Long id, Imovel entity) {
-        Optional<Imovel> existingImovelOptional = repository.findById(id);
-        if (existingImovelOptional.isEmpty()) {
+        Optional<Imovel> existingEntityOptional = repository.findById(id);
+        if (existingEntityOptional.isEmpty()) {
             throw new NotFoundException("Imovel não encontrado!");
         }
-        Imovel existingImovel = existingImovelOptional.get();
+        Imovel existingEntity = existingEntityOptional.get();
 
-        modelMapper.map(entity, existingImovel);
+        modelMapper.map(entity, existingEntity);
 
-        return repository.save(existingImovel);
+        return repository.save(existingEntity);
 
     }
 
     public void delete(Long id) {
-        Optional<Imovel> existingImovelOptional = repository.findById(id);
-        if (existingImovelOptional.isEmpty()) {
+        Optional<Imovel> existingEntityOptional = repository.findById(id);
+        if (existingEntityOptional.isEmpty()) {
             throw new NotFoundException("Imovel não encontrado!");
         }
         repository.deleteById(id);

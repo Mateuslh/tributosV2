@@ -24,8 +24,8 @@ public class EconomicoService extends AbstractCadastralService<Economico> {
         return repository.saveAll(entitys);
     }
 
-    public Economico save(Economico economico) {
-        return repository.save(economico);
+    public Economico save(Economico entity) {
+        return repository.save(entity);
     }
 
     public List<Economico> getAll() {
@@ -37,21 +37,21 @@ public class EconomicoService extends AbstractCadastralService<Economico> {
     }
 
     public Economico update(Long id, Economico entity) {
-        Optional<Economico> existingEconomicoOptional = repository.findById(id);
-        if (existingEconomicoOptional.isEmpty()) {
+        Optional<Economico> existingEntityOptional = repository.findById(id);
+        if (existingEntityOptional.isEmpty()) {
             throw new NotFoundException("Economico não encontrado!");
         }
-        Economico existingEconomico = existingEconomicoOptional.get();
+        Economico existingEntity = existingEntityOptional.get();
 
-        modelMapper.map(entity, existingEconomico);
+        modelMapper.map(entity, existingEntity);
 
-        return repository.save(existingEconomico);
+        return repository.save(existingEntity);
 
     }
 
     public void delete(Long id) {
-        Optional<Economico> existingEconomicoOptional = repository.findById(id);
-        if (existingEconomicoOptional.isEmpty()) {
+        Optional<Economico> existingEntityOptional = repository.findById(id);
+        if (existingEntityOptional.isEmpty()) {
             throw new NotFoundException("Economico não encontrado!");
         }
         repository.deleteById(id);
