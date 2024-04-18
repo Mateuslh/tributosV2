@@ -1,0 +1,17 @@
+package com.example.tributosV2.model.Credito;
+
+public enum TipoCadastroCredito {
+    CONTRIBUICAO_MELHORIAS,
+    CONTRIBUINTE,
+    ECONOMICOS,
+    ECONOMICO_ATIVIDADE,
+    IMOVEIS,
+    RECEITAS_DIVERSAS,
+    PARCELAMENTOS,
+    TRANSFERENCIA_IMOVEIS,
+    NOTA_FISCAL_AVULSA,
+    AUTO_INFRACAO,
+    PROJETOS,
+    NOTIFICACOES_ISS
+
+}
