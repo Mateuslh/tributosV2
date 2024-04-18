@@ -1,18 +1,69 @@
 package com.example.tributosV2.service;
 
+import com.example.tributosV2.exception.NotFoundException;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import java.util.List;
+import java.util.Optional;
 
-public abstract class AbstractCadastralService<T> {
+public abstract class AbstractCadastralService<T, R extends JpaRepository<T, Long>> {
 
-    public abstract List<T> saveAll(List<T> entitys);
+    private final String entityName = getModelName();
+    @Autowired
+    protected R repository;
+    @Autowired
+    protected ModelMapper modelMapper;
 
-    public abstract T save(T entity);
+    public List<T> saveAll(List<T> entities) {
+        return repository.saveAll(entities);
+    }
 
-    public abstract List<T> getAll();
+    public T save(T entity) {
+        return repository.save(entity);
+    }
 
-    public abstract T getById(Long id);
+    public List<T> getAll() {
+        return repository.findAll();
+    }
 
-    public abstract T update(Long id, T entity);
+    public T getById(Long id) {
+        return repository.findById(id).orElse(null);
+    }
 
-    public abstract void delete(Long id);
+    public T update(Long id, T entity) {
+        Optional<T> existingEntityOptional = repository.findById(id);
+        if (existingEntityOptional.isEmpty()) {
+            throw new NotFoundException(entityName + " não encontrada!");
+        }
+        T existingEntity = existingEntityOptional.get();
+
+        modelMapper.map(entity, existingEntity);
+
+        return repository.save(existingEntity);
+    }
+
+    public void delete(Long id) {
+        Optional<T> existingEntityOptional = repository.findById(id);
+        if (existingEntityOptional.isEmpty()) {
+            throw new NotFoundException(entityName + " não encontrada!");
+        }
+        repository.deleteById(id);
+    }
+
+    private String getModelName() {
+        try {
+            Class<?> clazz = getClass();
+            while (clazz != null) {
+                if (clazz.getSuperclass().equals(AbstractCadastralService.class)) {
+                    break;
+                }
+                clazz = clazz.getSuperclass();
+            }
+            return ((Class<T>) ((java.lang.reflect.ParameterizedType) clazz.getGenericSuperclass()).getActualTypeArguments()[0]).getSimpleName();
+        } catch (Exception e) {
+            throw new IllegalStateException("Erro ao obter o nome do modelo", e);
+        }
+    }
 }
