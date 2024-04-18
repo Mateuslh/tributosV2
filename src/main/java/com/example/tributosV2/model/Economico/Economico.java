@@ -2,9 +2,7 @@ package com.example.tributosV2.model.Economico;
 
 import com.example.tributosV2.exception.ValidationException;
 import com.example.tributosV2.model.Contribuinte.Contribuinte;
-import com.example.tributosV2.model.Contribuinte.PessoaFisica;
-import com.example.tributosV2.model.Contribuinte.PessoaJuridica;
-import com.example.tributosV2.model.EntityId.EntityId;
+import com.example.tributosV2.model.EntityId;
 import com.example.tributosV2.util.ValidadorDocumento;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -27,7 +25,7 @@ public class Economico extends EntityId {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "situacao")
-    private EconomicoSituacao situacao = EconomicoSituacao.INICIO;
+    private SituacaoEconomico situacao = SituacaoEconomico.INICIO;
 
     @Column(name = "endereco")
     private String endereco;

@@ -1,6 +1,6 @@
 package com.example.tributosV2.model.Contribuinte;
 
-public enum ContribuinteSituacao {
+public enum SituacaoContribuinte {
     ATIVO,
     DESATIVADO
 }

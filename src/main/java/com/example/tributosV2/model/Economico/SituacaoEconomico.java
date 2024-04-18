@@ -1,6 +1,6 @@
 package com.example.tributosV2.model.Economico;
 
-public enum EconomicoSituacao {
+public enum SituacaoEconomico {
     ATIVADO,
     INICIO,
     REINICIO,

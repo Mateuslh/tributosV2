@@ -1,7 +1,7 @@
 package com.example.tributosV2.model.Contribuinte;
 
 import com.example.tributosV2.exception.ValidationException;
-import com.example.tributosV2.model.EntityId.EntityId;
+import com.example.tributosV2.model.EntityId;
 import com.example.tributosV2.util.ValidadorDocumento;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,11 +19,23 @@ import lombok.Setter;
 @NoArgsConstructor
 public class PessoaFisica extends EntityId {
 
+    @Column(name = "codigo", nullable = false, unique = true)
+    private Long codigo;
+
     @Column(name = "cpf", nullable = false, unique = true)
     private String cpf;
 
     @Column(name = "rg", nullable = false, unique = true)
     private String rg;
+
+    @Column(name = "nome", nullable = false)
+    private String nome;
+
+    @Column(name = "endereco")
+    private String endereco;
+
+    @Column(name = "email")
+    private String email;
 
     public void setCpf(String cpf) {
         String cpfSemFormatacao = cpf.replace(".", "");
@@ -32,4 +44,5 @@ public class PessoaFisica extends EntityId {
         }
         this.cpf = cpfSemFormatacao;
     }
+
 }

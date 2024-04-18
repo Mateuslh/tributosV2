@@ -1,7 +1,7 @@
 package com.example.tributosV2.model.Contribuinte;
 
 import com.example.tributosV2.exception.ValidationException;
-import com.example.tributosV2.model.EntityId.EntityId;
+import com.example.tributosV2.model.EntityId;
 import com.example.tributosV2.util.ValidadorDocumento;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,10 +18,22 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PessoaJuridica extends EntityId {
+    @Column(name = "codigo", nullable = false, unique = true)
+    private Long codigo;
+
     @Column(name = "cnpj", nullable = false)
     private String cnpj;
     @Column(name = "inscricao_estadual")
     private String incricaoEstadual;
+
+    @Column(name = "nome", nullable = false)
+    private String nome;
+
+    @Column(name = "endereco")
+    private String endereco;
+
+    @Column(name = "email")
+    private String email;
 
     public void setCpf(String cnpj) {
         String cnpjSemFormatacao = cnpj.replaceAll("[./]", "");
