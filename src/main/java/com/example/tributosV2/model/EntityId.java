@@ -1,4 +1,4 @@
-package com.example.tributosV2.model.EntityId;
+package com.example.tributosV2.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;

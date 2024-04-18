@@ -1,7 +1,6 @@
 package com.example.tributosV2.model.Contribuinte;
 
-import com.example.tributosV2.model.EntityId.EntityId;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.example.tributosV2.model.EntityId;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,7 +31,7 @@ public class Contribuinte extends EntityId {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "situacao", nullable = false)
-    private ContribuinteSituacao situacao = ContribuinteSituacao.ATIVO;
+    private SituacaoContribuinte situacao = SituacaoContribuinte.ATIVO;
 
     @Column(name = "endereco")
     private String endereco;

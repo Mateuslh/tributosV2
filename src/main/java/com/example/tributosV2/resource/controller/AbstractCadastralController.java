@@ -1,40 +1,48 @@
 package com.example.tributosV2.resource.controller;
 
 import com.example.tributosV2.service.AbstractCadastralService;
+import com.example.tributosV2.util.EntityUtils;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractCadastralController<E, R extends AbstractCadastralService<E>> {
+
+public abstract class AbstractCadastralController<E, S extends AbstractCadastralService<E, ?>> {
+    protected final S service;
+    protected final Class<E> entityClass;
     private final ObjectMapper objectMapper = new ObjectMapper();
-    @Autowired
-    protected R service;
+
+    protected AbstractCadastralController(S service, Class<E> entityClass) {
+        this.service = service;
+        this.entityClass = entityClass;
+    }
 
     @GetMapping
     public ResponseEntity<?> getAll() {
         return ResponseEntity.ok().body(service.getAll());
     }
 
+    @GetMapping("{id}")
+    public ResponseEntity<?> getById(@PathVariable Long id) {
+        return ResponseEntity.ok().body(service.getById(id));
+    }
 
     @PostMapping
     public ResponseEntity<?> create(@RequestBody JsonNode requestBody) {
         try {
-            List<E> entities = new ArrayList<>();
             if (requestBody.isArray()) {
+                List<E> entities = new ArrayList<>();
                 for (JsonNode node : requestBody) {
-                    E entity = objectMapper.convertValue(node, this.getEntityClass());
+                    E entity = objectMapper.convertValue(node, entityClass);
                     entities.add(entity);
                 }
                 return ResponseEntity.ok().body(service.saveAll(entities));
             } else {
-                E entity = objectMapper.convertValue(requestBody, this.getEntityClass());
+                E entity = objectMapper.convertValue(requestBody, entityClass);
                 return ResponseEntity.ok().body(service.save(entity));
             }
         } catch (IllegalArgumentException e) {
@@ -42,5 +50,28 @@ public abstract class AbstractCadastralController<E, R extends AbstractCadastral
         }
     }
 
-    protected abstract Class<E> getEntityClass();
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody JsonNode requestBody) {
+        try {
+            E entity = objectMapper.convertValue(requestBody, entityClass);
+            E existingEntity = service.getById(id);
+            if (existingEntity != null) {
+                E newEntity = EntityUtils.mergeEntities(existingEntity, entity);
+                return ResponseEntity.ok().body(service.update(id, newEntity));
+            }
+            return ResponseEntity.badRequest().body(service.update(id, entity));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Erro ao executar operação:" + e.getMessage());
+        }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> FullUpdate(@PathVariable Long id, @RequestBody JsonNode requestBody) {
+        try {
+            E entity = objectMapper.convertValue(requestBody, entityClass);
+            return ResponseEntity.ok().body(service.update(id, entity));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Erro ao executar operação:" + e.getMessage());
+        }
+    }
 }
