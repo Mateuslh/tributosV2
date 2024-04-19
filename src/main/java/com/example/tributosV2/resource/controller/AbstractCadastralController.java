@@ -26,7 +26,7 @@ public abstract class AbstractCadastralController<E, S extends AbstractCadastral
         return ResponseEntity.ok().body(service.getAll());
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable Long id) {
         return ResponseEntity.ok().body(service.getById(id));
     }

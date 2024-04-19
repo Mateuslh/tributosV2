@@ -39,8 +39,13 @@ public class Debito extends EntityId {
     @Column(name = "nroParcela", nullable = false)
     private Long parcela;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "situacao", nullable = false)
     private SituacaoParcela situacao;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "referente", nullable = false)
+    private ReferenteParcela referente;
 
     @Column(name = "vlLancado", nullable = false)
     private BigDecimal vlLancado;
