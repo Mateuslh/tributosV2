@@ -1,4 +1,4 @@
-package com.example.tributosV2.resource.controller;
+package com.example.tributosV2.controller;
 
 import com.example.tributosV2.model.Debito.Debito;
 import com.example.tributosV2.service.DebitoService;
@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/credito")
-public class CreditoController extends AbstractCadastralController<Debito, DebitoService> {
+@RequestMapping("/api/debito")
+public class DebitoController extends AbstractCadastralController<Debito, DebitoService> {
     @Autowired
-    public CreditoController(DebitoService service) {
+    public DebitoController(DebitoService service) {
         super(service, Debito.class);
     }
 }

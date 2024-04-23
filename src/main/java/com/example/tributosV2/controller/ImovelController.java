@@ -1,4 +1,4 @@
-package com.example.tributosV2.resource.controller;
+package com.example.tributosV2.controller;
 
 
 import com.example.tributosV2.model.imovel.Imovel;
