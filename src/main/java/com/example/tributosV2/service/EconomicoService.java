@@ -16,7 +16,7 @@ public class EconomicoService extends AbstractCadastralService<Economico, Econom
     @Autowired
     protected DebitoRepository debitoRepository;
 
-    public List<Debito> getDebitos(Long contribuinteId) throws NotFoundException {
-        return debitoRepository.findDebitoByContribuinteId(contribuinteId);
+    public List<Debito> getDebitos(Long economicoId) throws NotFoundException {
+        return debitoRepository.findDebitoByEconomicoId(economicoId);
     }
 }
