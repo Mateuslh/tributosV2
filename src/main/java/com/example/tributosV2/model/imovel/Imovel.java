@@ -27,7 +27,7 @@ public class Imovel extends EntityId {
     @Embedded
     public InscricaoImobiliaria inscricaoImobiliaria;
     @ManyToOne
-    @JoinColumn(name = "contribuinte_id")
+    @JoinColumn(name = "contribuinte_id", nullable = false)
     private Contribuinte contribuinte;
 
     public void setInscricaoImobiliaria(@org.jetbrains.annotations.NotNull Map<String, Long> inscricaoImobiliaria) {

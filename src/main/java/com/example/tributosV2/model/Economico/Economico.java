@@ -17,14 +17,14 @@ import java.sql.Timestamp;
 public class Economico extends EntityId {
 
     @ManyToOne
-    @JoinColumn(name = "contribuinte_id")
+    @JoinColumn(name = "contribuinte_id", nullable = false)
     private Contribuinte contribuinte;
 
     @Column(name = "codigo", nullable = false, unique = true)
     private Long codigo;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "situacao")
+    @Column(name = "situacao",nullable = false)
     private SituacaoEconomico situacao = SituacaoEconomico.INICIO;
 
     @Column(name = "endereco")
@@ -36,10 +36,10 @@ public class Economico extends EntityId {
     @Column(name = "dhInicioAtividade")
     private Timestamp dhInicioAtividade;
 
-    @Column(name = "isAutonomo")
-    private Boolean isAutonomo;
+    @Column(name = "isAutonomo", nullable = false)
+    private Boolean isAutonomo = Boolean.FALSE;
 
-    @Column(name = "cpfCnpj")
+    @Column(name = "cpfCnpj",nullable = false)
     private String cpfCnpj;
 
     @Column(name = "email")

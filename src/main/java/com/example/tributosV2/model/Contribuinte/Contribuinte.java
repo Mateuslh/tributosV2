@@ -1,5 +1,6 @@
 package com.example.tributosV2.model.Contribuinte;
 
+import com.example.tributosV2.exception.ValidationException;
 import com.example.tributosV2.model.EntityId;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -38,4 +39,10 @@ public class Contribuinte extends EntityId {
 
     @Column(name = "email")
     private String email;
+
+    public void validate() throws ValidationException {
+        if ((pessoaFisica != null && pessoaJuridica != null) || (pessoaFisica == null && pessoaJuridica == null)) {
+            throw new ValidationException("Apenas uma das pessoas (física ou jurídica) deve ser preenchida");
+        }
+    }
 }
