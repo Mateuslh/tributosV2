@@ -45,11 +45,12 @@ public abstract class AbstractCadastralService<T, R extends JpaRepository<T, Lon
     }
 
     public void delete(Long id) {
-        Optional<T> existingEntityOptional = repository.findById(id);
-        if (existingEntityOptional.isEmpty()) {
-            throw new NotFoundException(entityName + " não encontrada!");
+        try {
+            Optional<T> existingEntityOptional = repository.findById(id);
+            repository.deleteById(id);
+        }catch(NullPointerException e ){
+                throw new NotFoundException(entityName + " não encontrada!");
         }
-        repository.deleteById(id);
     }
 
     private String getModelName() {
