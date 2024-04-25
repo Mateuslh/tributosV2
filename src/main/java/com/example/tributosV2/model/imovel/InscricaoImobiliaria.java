@@ -6,26 +6,28 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class InscricaoImobiliaria {
     @Column
     @Size(min = 4, max = 4)
-    public Long campo1;
+    private Long campo1;
 
     @Column
     @Size(min = 9, max = 9)
-    public Long campo2;
+    private Long campo2;
 
     @Column
     @Size(min = 3, max = 3)
-    public Long campo3;
+    private Long campo3;
 
     @Column
     @Size(min = 1, max = 1)
-    public Long campo4;
+    private Long campo4;
 
     public void setCampo1(Long campo1) {
         if (campo1.toString().length() == 4) this.campo1 = campo1;

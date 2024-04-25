@@ -18,14 +18,14 @@ import java.util.Map;
 @AllArgsConstructor
 public class Imovel extends EntityId {
     @Column(nullable = false, unique = true)
-    public Long codigo;
+    private Long codigo;
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    public ImovelTipo imovelTipo = ImovelTipo.URBANO;
+    private ImovelTipo imovelTipo = ImovelTipo.URBANO;
     @Column
-    public String endereco;
+    private String endereco;
     @Embedded
-    public InscricaoImobiliaria inscricaoImobiliaria;
+    private InscricaoImobiliaria inscricaoImobiliaria;
     @ManyToOne
     @JoinColumn(name = "contribuinte_id", nullable = false)
     private Contribuinte contribuinte;
