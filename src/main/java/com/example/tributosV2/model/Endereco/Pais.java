@@ -1,4 +1,4 @@
-package com.example.tributosV2.model.endereco;
+package com.example.tributosV2.model.Endereco;
 
 import com.example.tributosV2.model.EntityId;
 import jakarta.persistence.Column;
@@ -9,19 +9,26 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
-@Table
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Bairro extends EntityId {
+@Entity
+@Table
+public class Pais extends EntityId {
+    @Column
+    private Long codigo;
+
     @Column
     private String nome;
 
     @Column
-    private String cep;
+    private String nome_en;
 
     @Column
-    private Boolean zonaRural;
+    private String sigla;
+
+    @Column
+    private Integer bacen;
 }

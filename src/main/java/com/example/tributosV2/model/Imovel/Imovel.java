@@ -1,4 +1,4 @@
-package com.example.tributosV2.model.imovel;
+package com.example.tributosV2.model.Imovel;
 
 import com.example.tributosV2.model.Contribuinte.Contribuinte;
 import com.example.tributosV2.model.EntityId;

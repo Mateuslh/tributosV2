@@ -1,14 +1,16 @@
 package com.example.tributosV2.model.Debito;
 
-import com.example.tributosV2.exception.ValidationException;
 import com.example.tributosV2.model.Contribuinte.Contribuinte;
 import com.example.tributosV2.model.Credito.Credito;
 import com.example.tributosV2.model.Economico.Economico;
 import com.example.tributosV2.model.EntityId;
-import com.example.tributosV2.model.imovel.Imovel;
+import com.example.tributosV2.model.Imovel.Imovel;
+import com.example.tributosV2.model.enums.ReferenteGuia;
+import com.example.tributosV2.model.enums.SituacaoGuia;
 import com.example.tributosV2.util.BigDecimalUtils;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -41,39 +43,39 @@ public class Debito extends EntityId {
     private Credito credito;
 
     @Positive
-    @Column(name = "nroParcela", nullable = false)
+    @Column(name = "nro_parcela", nullable = false)
     private Long parcela;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "situacao", nullable = false)
-    private SituacaoParcela situacao;
+    private SituacaoGuia situacao;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "referente", nullable = false)
-    private ReferenteParcela referente;
+    private ReferenteGuia referente;
 
     @Positive
-    @Column(name = "vlLancado", nullable = false)
+    @Column(name = "vl_lancado", nullable = false)
     private BigDecimal vlLancado;
 
-    @Positive
-    @Column(name = "vlCorrecao", nullable = false)
+    @PositiveOrZero
+    @Column(name = "vl_correcao", nullable = false)
     private BigDecimal vlCorrecao;
 
-    @Positive
-    @Column(name = "vlJuros", nullable = false)
+    @PositiveOrZero
+    @Column(name = "vl_juros", nullable = false)
     private BigDecimal vlJuros;
 
-    @Positive
-    @Column(name = "vlMulta", nullable = false)
+    @PositiveOrZero
+    @Column(name = "vl_multa", nullable = false)
     private BigDecimal vlMulta;
 
-    @Positive
-    @Column(name = "vlDesconto", nullable = false)
+    @PositiveOrZero
+    @Column(name = "vl_desconto", nullable = false)
     private BigDecimal vlDesconto;
 
-    @Positive
-    @Column(name = "vlBeneficio", nullable = false)
+    @PositiveOrZero
+    @Column(name = "vl_beneficio", nullable = false)
     private BigDecimal vlBeneficio;
 
     public BigDecimal getValueDescontos() {

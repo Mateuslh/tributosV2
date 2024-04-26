@@ -3,7 +3,6 @@ package com.example.tributosV2.service;
 import com.example.tributosV2.exception.NotFoundException;
 import com.example.tributosV2.model.Contribuinte.Contribuinte;
 import com.example.tributosV2.model.Debito.Debito;
-import com.example.tributosV2.model.Debito.ReferenteParcela;
 import com.example.tributosV2.repository.ContribuienteRepository;
 import com.example.tributosV2.repository.DebitoRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -24,7 +24,7 @@ public class Economico extends EntityId {
     private Long codigo;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "situacao",nullable = false)
+    @Column(name = "situacao", nullable = false)
     private SituacaoEconomico situacao = SituacaoEconomico.INICIO;
 
     @Column(name = "endereco")
@@ -39,7 +39,7 @@ public class Economico extends EntityId {
     @Column(name = "isAutonomo", nullable = false)
     private Boolean isAutonomo = Boolean.FALSE;
 
-    @Column(name = "cpfCnpj",nullable = false)
+    @Column(name = "cpfCnpj", nullable = false)
     private String cpfCnpj;
 
     @Column(name = "email")

@@ -2,7 +2,7 @@ package com.example.tributosV2.service;
 
 import com.example.tributosV2.exception.NotFoundException;
 import com.example.tributosV2.model.Debito.Debito;
-import com.example.tributosV2.model.imovel.Imovel;
+import com.example.tributosV2.model.Imovel.Imovel;
 import com.example.tributosV2.repository.DebitoRepository;
 import com.example.tributosV2.repository.ImovelRepository;
 import org.springframework.beans.factory.annotation.Autowired;

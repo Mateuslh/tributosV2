@@ -1,8 +1,6 @@
 package com.example.tributosV2.controller;
 
-import com.example.tributosV2.model.Debito.Debito;
 import com.example.tributosV2.model.Pagamento.Pagamento;
-import com.example.tributosV2.service.DebitoService;
 import com.example.tributosV2.service.PagamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

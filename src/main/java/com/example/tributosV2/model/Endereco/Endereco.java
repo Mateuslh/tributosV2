@@ -1,4 +1,4 @@
-package com.example.tributosV2.model.endereco;
+package com.example.tributosV2.model.Endereco;
 
 import com.example.tributosV2.model.EntityId;
 import jakarta.persistence.*;

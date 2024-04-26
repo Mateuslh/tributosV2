@@ -2,7 +2,7 @@ package com.example.tributosV2.controller;
 
 
 import com.example.tributosV2.exception.NotFoundException;
-import com.example.tributosV2.model.imovel.Imovel;
+import com.example.tributosV2.model.Imovel.Imovel;
 import com.example.tributosV2.service.ImovelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
