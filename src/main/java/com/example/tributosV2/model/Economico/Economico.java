@@ -33,13 +33,13 @@ public class Economico extends EntityId {
     @Column(name = "nome", nullable = false)
     private String nome;
 
-    @Column(name = "dhInicioAtividade")
+    @Column(name = "dh_inicio_atividade")
     private Timestamp dhInicioAtividade;
 
-    @Column(name = "isAutonomo", nullable = false)
+    @Column(name = "is_autonomo", nullable = false)
     private Boolean isAutonomo = Boolean.FALSE;
 
-    @Column(name = "cpfCnpj", nullable = false)
+    @Column(name = "cpf_cnpj", nullable = false)
     private String cpfCnpj;
 
     @Column(name = "email")

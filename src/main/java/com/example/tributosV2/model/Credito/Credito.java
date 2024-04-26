@@ -17,6 +17,6 @@ public class Credito extends EntityId {
     private String abreviatura;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "tipoCadastro")
+    @Column(name = "tipo_cadastro")
     private TipoCadastroCredito tipoCadastro;
 }
