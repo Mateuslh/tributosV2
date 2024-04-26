@@ -10,10 +10,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Credito extends EntityId {
-    @Column(name = "descricao", nullable = false,unique = true)
+    @Column(name = "descricao", nullable = false, unique = true)
     private String descricao;
 
-    @Column(name = "abreviatura", nullable = false,unique = true)
+    @Column(name = "abreviatura", nullable = false, unique = true)
     private String abreviatura;
 
     @Enumerated(EnumType.STRING)
