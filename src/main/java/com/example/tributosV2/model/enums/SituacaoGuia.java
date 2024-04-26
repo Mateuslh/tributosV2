@@ -1,6 +1,6 @@
-package com.example.tributosV2.model.Debito;
+package com.example.tributosV2.model.enums;
 
-public enum SituacaoParcela {
+public enum SituacaoGuia {
     ABERTO,
     PAGA,
     CANCELADA,
