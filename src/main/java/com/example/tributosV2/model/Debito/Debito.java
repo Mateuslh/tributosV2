@@ -88,21 +88,4 @@ public class Debito extends EntityId {
         return getValueAcressimos().subtract(getValueDescontos());
     }
 
-    public void validate() throws ValidationException {
-        if (economico == null && contribuinte == null && imovel == null) {
-            throw new ValidationException("Um referente deve ser preenchido.");
-        }
-        if (referente == null) {
-            throw new ValidationException("O referente não pode ser nulo.");
-        }
-        if ((economico == null && referente == ReferenteParcela.ECONOMICOS) ||
-                (contribuinte == null && referente == ReferenteParcela.CONTRIBUINTE) ||
-                (imovel == null && referente == ReferenteParcela.IMOVEIS)) {
-            throw new ValidationException("O debito deve estar associado ao referente selecionado.");
-        }
-        if (getValueTotal().compareTo(BigDecimal.ZERO) < 0) {
-            throw new ValidationException("O valor final deve ser maior que 0.");
-        }
-    }
-
 }
