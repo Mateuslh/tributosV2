@@ -1,6 +1,7 @@
 package com.example.tributosV2.model.Contribuinte;
 
 import com.example.tributosV2.exception.ValidationException;
+import com.example.tributosV2.model.Endereco.Bairro;
 import com.example.tributosV2.model.EntityId;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -17,11 +18,11 @@ import lombok.Setter;
 public class Contribuinte extends EntityId {
 
     @OneToOne
-    @JoinColumn(name = "pessoaFisica_id")
+    @JoinColumn(name = "pessoa_fisica_id")
     private PessoaFisica pessoaFisica;
 
     @OneToOne
-    @JoinColumn(name = "pessoaJuridica_id")
+    @JoinColumn(name = "pessoa_juridica_id")
     private PessoaJuridica pessoaJuridica;
 
     @Column(name = "codigo", nullable = false, unique = true)
@@ -34,8 +35,9 @@ public class Contribuinte extends EntityId {
     @Column(name = "situacao", nullable = false)
     private SituacaoContribuinte situacao = SituacaoContribuinte.ATIVO;
 
-    @Column(name = "endereco")
-    private String endereco;
+    @ManyToOne
+    @JoinColumn(name = "bairro")
+    private Bairro bairro;
 
     @Column(name = "email")
     private String email;
