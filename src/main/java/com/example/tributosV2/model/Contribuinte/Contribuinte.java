@@ -2,6 +2,7 @@ package com.example.tributosV2.model.Contribuinte;
 
 import com.example.tributosV2.exception.ValidationException;
 import com.example.tributosV2.model.Endereco.Bairro;
+import com.example.tributosV2.model.Endereco.Endereco;
 import com.example.tributosV2.model.EntityId;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -36,8 +37,8 @@ public class Contribuinte extends EntityId {
     private SituacaoContribuinte situacao = SituacaoContribuinte.ATIVO;
 
     @ManyToOne
-    @JoinColumn(name = "bairro")
-    private Bairro bairro;
+    @JoinColumn(name = "endereco")
+    private Endereco endereco;
 
     @Column(name = "email")
     private String email;
