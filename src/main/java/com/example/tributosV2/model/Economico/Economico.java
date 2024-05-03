@@ -2,6 +2,7 @@ package com.example.tributosV2.model.Economico;
 
 import com.example.tributosV2.exception.ValidationException;
 import com.example.tributosV2.model.Contribuinte.Contribuinte;
+import com.example.tributosV2.model.Endereco.Endereco;
 import com.example.tributosV2.model.EntityId;
 import com.example.tributosV2.util.ValidadorDocumento;
 import jakarta.persistence.*;
@@ -27,8 +28,9 @@ public class Economico extends EntityId {
     @Column(name = "situacao", nullable = false)
     private SituacaoEconomico situacao = SituacaoEconomico.INICIO;
 
-    @Column(name = "endereco")
-    private String endereco;
+    @ManyToOne
+    @JoinColumn(name = "endereco")
+    private Endereco endereco;
 
     @Column(name = "nome", nullable = false)
     private String nome;

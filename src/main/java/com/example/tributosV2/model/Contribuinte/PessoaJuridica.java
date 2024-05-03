@@ -1,11 +1,10 @@
 package com.example.tributosV2.model.Contribuinte;
 
 import com.example.tributosV2.exception.ValidationException;
+import com.example.tributosV2.model.Endereco.Endereco;
 import com.example.tributosV2.model.EntityId;
 import com.example.tributosV2.util.ValidadorDocumento;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,8 +28,9 @@ public class PessoaJuridica extends EntityId {
     @Column(name = "nome", nullable = false)
     private String nome;
 
-    @Column(name = "endereco")
-    private String endereco;
+    @ManyToOne
+    @JoinColumn(name = "endereco")
+    private Endereco endereco;
 
     @Column(name = "email")
     private String email;

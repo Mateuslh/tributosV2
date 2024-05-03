@@ -1,6 +1,7 @@
 package com.example.tributosV2.model.Imovel;
 
 import com.example.tributosV2.model.Contribuinte.Contribuinte;
+import com.example.tributosV2.model.Endereco.Endereco;
 import com.example.tributosV2.model.EntityId;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -22,8 +23,11 @@ public class Imovel extends EntityId {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private ImovelTipo imovelTipo = ImovelTipo.URBANO;
-    @Column
-    private String endereco;
+
+    @ManyToOne
+    @JoinColumn(name = "endereco")
+    private Endereco endereco;
+
     @Embedded
     private InscricaoImobiliaria inscricaoImobiliaria;
     @ManyToOne
